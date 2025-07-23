@@ -14,7 +14,178 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      conversations: {
+        Row: {
+          created_at: string
+          id: string
+          language: string | null
+          session_duration: number | null
+          title: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          language?: string | null
+          session_duration?: number | null
+          title?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          language?: string | null
+          session_duration?: number | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          coherence_indicator: string | null
+          content: string
+          conversation_id: string
+          created_at: string
+          energy_indicator: string | null
+          id: string
+          language: string | null
+          mood_indicator: string | null
+          type: string
+        }
+        Insert: {
+          coherence_indicator?: string | null
+          content: string
+          conversation_id: string
+          created_at?: string
+          energy_indicator?: string | null
+          id?: string
+          language?: string | null
+          mood_indicator?: string | null
+          type: string
+        }
+        Update: {
+          coherence_indicator?: string | null
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          energy_indicator?: string | null
+          id?: string
+          language?: string | null
+          mood_indicator?: string | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+          preferred_language: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          preferred_language?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          preferred_language?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      wellness_metrics: {
+        Row: {
+          coherence_score: number | null
+          coherence_status: string | null
+          coherence_trend: string | null
+          conversation_id: string | null
+          created_at: string
+          energy_score: number | null
+          energy_status: string | null
+          energy_trend: string | null
+          engagement_score: number | null
+          engagement_status: string | null
+          engagement_trend: string | null
+          id: string
+          mood_score: number | null
+          mood_status: string | null
+          mood_trend: string | null
+          overall_score: number | null
+          user_id: string
+          warning_flags: string[] | null
+        }
+        Insert: {
+          coherence_score?: number | null
+          coherence_status?: string | null
+          coherence_trend?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          energy_score?: number | null
+          energy_status?: string | null
+          energy_trend?: string | null
+          engagement_score?: number | null
+          engagement_status?: string | null
+          engagement_trend?: string | null
+          id?: string
+          mood_score?: number | null
+          mood_status?: string | null
+          mood_trend?: string | null
+          overall_score?: number | null
+          user_id: string
+          warning_flags?: string[] | null
+        }
+        Update: {
+          coherence_score?: number | null
+          coherence_status?: string | null
+          coherence_trend?: string | null
+          conversation_id?: string | null
+          created_at?: string
+          energy_score?: number | null
+          energy_status?: string | null
+          energy_trend?: string | null
+          engagement_score?: number | null
+          engagement_status?: string | null
+          engagement_trend?: string | null
+          id?: string
+          mood_score?: number | null
+          mood_status?: string | null
+          mood_trend?: string | null
+          overall_score?: number | null
+          user_id?: string
+          warning_flags?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wellness_metrics_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
