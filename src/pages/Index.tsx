@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
 import { VoiceInterface } from '@/components/VoiceInterface';
 import { ConversationPanel } from '@/components/ConversationPanel';
 import { WellnessIndicators } from '@/components/WellnessIndicators';
@@ -7,7 +9,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Heart, Shield, Key } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Heart, Shield, Key, User, LogOut, Loader2 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
 // Mock data for demonstration
@@ -57,6 +60,8 @@ const mockWellnessData = {
 };
 
 const Index = () => {
+  const { user, loading, signOut } = useAuth();
+  const navigate = useNavigate();
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -65,6 +70,13 @@ const Index = () => {
   const [sessionTime, setSessionTime] = useState(12);
   const [apiKey, setApiKey] = useState('');
   const [showApiDialog, setShowApiDialog] = useState(false);
+
+  // Redirect to auth if not authenticated
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate('/auth');
+    }
+  }, [user, loading, navigate]);
 
   // Simulate session timer
   useEffect(() => {
@@ -152,21 +164,60 @@ const Index = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/auth');
+  };
+
+  // Show loading screen while checking authentication
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto" />
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render the main app if user is not authenticated
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="p-3 rounded-full bg-gradient-voice">
-              <Heart className="w-8 h-8 text-primary-foreground" />
+        <div className="flex justify-between items-start mb-8">
+          <div className="text-center flex-1">
+            <div className="flex items-center justify-center space-x-3 mb-4">
+              <div className="p-3 rounded-full bg-gradient-voice">
+                <Heart className="w-8 h-8 text-primary-foreground" />
+              </div>
+              <h1 className="text-4xl font-bold text-foreground">MindWhisper</h1>
             </div>
-            <h1 className="text-4xl font-bold text-foreground">MindWhisper</h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Your AI mental health companion. Speak freely in a safe, supportive space 
+              designed for natural conversation and gentle psychological insights.
+            </p>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your AI mental health companion. Speak freely in a safe, supportive space 
-            designed for natural conversation and gentle psychological insights.
-          </p>
+          
+          {/* User Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon" className="ml-4">
+                <User className="w-4 h-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={handleSignOut}>
+                <LogOut className="w-4 h-4 mr-2" />
+                Sign Out
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
         {/* Main Interface */}
@@ -221,6 +272,9 @@ const Index = () => {
               MindWhisper provides supportive conversation and insights but does not replace professional medical care. 
               If you're experiencing a mental health emergency, please contact emergency services immediately.
             </p>
+            <div className="text-xs text-muted-foreground">
+              Welcome back, {user.email}! • <Link to="/auth" className="hover:underline">Switch Account</Link>
+            </div>
           </div>
         </Card>
 
