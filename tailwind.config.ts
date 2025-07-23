@@ -20,17 +20,23 @@ export default {
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
+				input: {
+					DEFAULT: 'hsl(var(--input))',
+					border: 'hsl(var(--input-border))'
+				},
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					soft: 'hsl(var(--primary-soft))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))'
+					foreground: 'hsl(var(--secondary-foreground))',
+					soft: 'hsl(var(--secondary-soft))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -42,7 +48,8 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					foreground: 'hsl(var(--accent-foreground))',
+					soft: 'hsl(var(--accent-soft))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -51,6 +58,17 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				wellness: {
+					calm: 'hsl(var(--wellness-calm))',
+					positive: 'hsl(var(--wellness-positive))',
+					warning: 'hsl(var(--wellness-warning))',
+					concern: 'hsl(var(--wellness-concern))'
+				},
+				status: {
+					listening: 'hsl(var(--status-listening))',
+					speaking: 'hsl(var(--status-speaking))',
+					processing: 'hsl(var(--status-processing))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -62,6 +80,20 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'gradient-voice': 'var(--gradient-voice)',
+				'gradient-calm': 'var(--gradient-calm)',
+				'gradient-session': 'var(--gradient-session)'
+			},
+			boxShadow: {
+				'soft': 'var(--shadow-soft)',
+				'medium': 'var(--shadow-medium)',
+				'strong': 'var(--shadow-strong)'
+			},
+			transitionTimingFunction: {
+				'gentle': 'var(--transition-gentle)',
+				'bounce': 'var(--transition-bounce)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
