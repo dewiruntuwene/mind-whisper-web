@@ -125,10 +125,9 @@ export function WellnessIndicators({ data, className }: WellnessIndicatorsProps)
                 </div>
               </div>
               
-              <Progress 
-                value={metric.score} 
-                className="h-2"
-                // TODO: Add custom progress styling in component
+              <Progress
+                value={metric.score}
+                className="h-2 bg-secondary/40"
               />
               
               <div className="flex justify-between items-center">
