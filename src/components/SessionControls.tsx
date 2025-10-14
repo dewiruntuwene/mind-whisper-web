@@ -96,9 +96,14 @@ export function SessionControls({
             variant="outline"
             onClick={onNewSession}
             className="w-full justify-start space-x-2"
+            disabled={isCreatingSession}
           >
-            <RotateCcw className="w-4 h-4" />
-            <span>Start New Session</span>
+            {isCreatingSession ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <RotateCcw className="w-4 h-4" />
+            )}
+            <span>{isCreatingSession ? 'Creating Session' : 'Start New Session'}</span>
           </Button>
 
           <Button
