@@ -22,6 +22,7 @@ interface SessionControlsProps {
   onShareWithTherapist: () => void;
   onSettings: () => void;
   className?: string;
+  isCreatingSession?: boolean;
 }
 
 export function SessionControls({
