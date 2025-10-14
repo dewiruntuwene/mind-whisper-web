@@ -1,14 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Settings, 
-  Download, 
-  Share2, 
-  RotateCcw, 
-  FileText, 
+import {
+  Settings,
+  Download,
+  Share2,
+  RotateCcw,
+  FileText,
   Languages,
-  Shield
+  Shield,
+  Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
