@@ -33,7 +33,8 @@ export function SessionControls({
   onDownloadSummary,
   onShareWithTherapist,
   onSettings,
-  className
+  className,
+  isCreatingSession = false
 }: SessionControlsProps) {
   const formatDuration = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
