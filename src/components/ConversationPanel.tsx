@@ -65,16 +65,16 @@ export function ConversationPanel({
               key={message.id}
               className={cn(
                 "flex items-start space-x-3 p-4 rounded-lg transition-all duration-300",
-                message.type === 'ai' 
-                  ? "bg-primary-soft/30 ml-8" 
+                message.type === 'ai'
+                  ? "bg-primary-soft/30 ml-8"
                   : "bg-card mr-8 shadow-soft"
               )}
             >
               {/* Avatar */}
               <div className={cn(
                 "flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center",
-                message.type === 'ai' 
-                  ? "bg-primary text-primary-foreground" 
+                message.type === 'ai'
+                  ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-secondary-foreground"
               )}>
                 {message.type === 'ai' ? (
@@ -109,8 +109,8 @@ export function ConversationPanel({
                 {message.type === 'user' && message.indicators && (
                   <div className="flex items-center space-x-2 pt-2 border-t border-border/50">
                     {message.indicators.mood && (
-                      <Badge 
-                        variant="outline" 
+                      <Badge
+                        variant="outline"
                         className={cn(
                           "text-xs border-0",
                           `bg-${getMoodColor(message.indicators.mood)}/20 text-${getMoodColor(message.indicators.mood)}`
@@ -120,8 +120,8 @@ export function ConversationPanel({
                       </Badge>
                     )}
                     {message.indicators.energy && (
-                      <Badge 
-                        variant="outline" 
+                      <Badge
+                        variant="outline"
                         className={cn(
                           "text-xs border-0",
                           `bg-${getEnergyColor(message.indicators.energy)}/20 text-${getEnergyColor(message.indicators.energy)}`
@@ -131,11 +131,11 @@ export function ConversationPanel({
                       </Badge>
                     )}
                     {message.indicators.coherence && (
-                      <Badge 
-                        variant="outline" 
+                      <Badge
+                        variant="outline"
                         className={cn(
                           "text-xs border-0",
-                          message.indicators.coherence === 'clear' 
+                          message.indicators.coherence === 'clear'
                             ? "bg-wellness-positive/20 text-wellness-positive"
                             : "bg-wellness-warning/20 text-wellness-warning"
                         )}
@@ -148,6 +148,15 @@ export function ConversationPanel({
               </div>
             </div>
           ))}
+
+          {messages.length === 0 && !isTyping && (
+            <div className="flex flex-col items-center justify-center py-16 text-center text-muted-foreground">
+              <Brain className="w-6 h-6 mb-3 text-status-processing" />
+              <p className="text-sm max-w-xs">
+                Start a session to capture your thoughts and see the conversation flow here.
+              </p>
+            </div>
+          )}
 
           {/* Typing Indicator */}
           {isTyping && (
