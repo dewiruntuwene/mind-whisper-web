@@ -1,14 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Settings, 
-  Download, 
-  Share2, 
-  RotateCcw, 
-  FileText, 
+import {
+  Settings,
+  Download,
+  Share2,
+  RotateCcw,
+  FileText,
   Languages,
-  Shield
+  Shield,
+  Loader2
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +22,7 @@ interface SessionControlsProps {
   onShareWithTherapist: () => void;
   onSettings: () => void;
   className?: string;
+  isCreatingSession?: boolean;
 }
 
 export function SessionControls({
@@ -31,7 +33,8 @@ export function SessionControls({
   onDownloadSummary,
   onShareWithTherapist,
   onSettings,
-  className
+  className,
+  isCreatingSession = false
 }: SessionControlsProps) {
   const formatDuration = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
@@ -93,9 +96,14 @@ export function SessionControls({
             variant="outline"
             onClick={onNewSession}
             className="w-full justify-start space-x-2"
+            disabled={isCreatingSession}
           >
-            <RotateCcw className="w-4 h-4" />
-            <span>Start New Session</span>
+            {isCreatingSession ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <RotateCcw className="w-4 h-4" />
+            )}
+            <span>{isCreatingSession ? 'Creating Session' : 'Start New Session'}</span>
           </Button>
 
           <Button
