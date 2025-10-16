@@ -55,8 +55,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         preferred_language: 'en'
       });
 
-    if (error && error.code !== '23505') { // Ignore duplicate key error
-      console.error('Error creating profile:', error);
+    if (error && (error as any).code !== '23505') { // Ignore duplicate key error
+      console.error('Error creating profile:', (error as any)?.message ?? error);
     }
   };
 
