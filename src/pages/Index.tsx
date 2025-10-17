@@ -241,7 +241,7 @@ const Index = () => {
 
       setWellnessData(wellnessRow ? mapWellness(wellnessRow, conversation.session_duration ?? 0) : null);
     } catch (error: any) {
-      console.error('Failed to load session data', error);
+      console.error('Failed to load session data:', error?.message ?? error);
       setDataError('Unable to load your recent session. Please try again.');
       toast({
         title: 'Failed to sync data',
