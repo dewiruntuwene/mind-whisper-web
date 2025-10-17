@@ -489,25 +489,30 @@ const Index = () => {
               <h1 className="text-4xl font-bold text-foreground">MindWhisper</h1>
             </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Your AI mental health companion. Speak freely in a safe, supportive space 
+              Your AI mental health companion. Speak freely in a safe, supportive space
               designed for natural conversation and gentle psychological insights.
             </p>
           </div>
-          
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="ml-4">
-                <User className="w-4 h-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={handleSignOut}>
-                <LogOut className="w-4 h-4 mr-2" />
-                Sign Out
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+
+          {/* Actions */}
+          <div className="flex items-center gap-2">
+            <Link to="/community">
+              <Button>Community</Button>
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="ml-1">
+                  <User className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Sign Out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
 
         {/* Main Interface */}
