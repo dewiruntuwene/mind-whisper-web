@@ -59,7 +59,7 @@ export default function CommunityPage() {
             <h1 className="text-2xl font-bold">Community</h1>
             <Badge variant="secondary">Frontend only</Badge>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <Input
               value={state.currentUser.name}
               onChange={(e) => setName(e.target.value)}
