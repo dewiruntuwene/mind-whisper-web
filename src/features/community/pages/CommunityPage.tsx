@@ -51,7 +51,7 @@ export default function CommunityPage() {
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
           <div className="flex items-center gap-3">
             <Link to="/" className="inline-flex">
               <Button variant="outline" size="icon"><ArrowLeft className="w-4 h-4" /></Button>
