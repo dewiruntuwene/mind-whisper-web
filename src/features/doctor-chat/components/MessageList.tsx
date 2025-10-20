@@ -10,7 +10,7 @@ export function MessageList({ messages, className }: { messages: ChatMessage[]; 
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages.length]);
 
   return (
-    <Card className={cn("flex flex-col h-[500px] bg-card border-0 shadow-soft", className)}>
+    <Card className={cn("flex flex-col h-[55vh] md:h-[60vh] lg:h-[500px] bg-card border-0 shadow-soft", className)}>
       <ScrollArea className="flex-1 p-4">
         <div className="space-y-4">
           {messages.map((m) => {

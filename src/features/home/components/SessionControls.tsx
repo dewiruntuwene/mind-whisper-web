@@ -38,7 +38,7 @@ export function SessionControls({ sessionDuration, language, onLanguageChange, o
           <Button variant="outline" onClick={onSettings} className="w-full justify-start space-x-2"><Settings className="w-4 h-4" /><span>Settings</span></Button>
         </div>
 
-        <div className="pt-4 border-top border-border">
+        <div className="pt-4 border-t border-border">
           <div className="flex items-start space-x-2 text-xs text-muted-foreground"><Shield className="w-3 h-3 flex-shrink-0 mt-0.5" /><p className="leading-relaxed">Your conversations are encrypted and secure. Mental health assessments are for informational purposes only and do not replace professional medical advice.</p></div>
         </div>
       </div>

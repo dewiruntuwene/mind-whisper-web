@@ -273,20 +273,20 @@ const HomePage = () => {
           </Alert>
         )}
 
-        <div className="flex justify-between items-start mb-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-8">
           <div className="text-center flex-1">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="p-3 rounded-full bg-gradient-voice">
                 <Heart className="w-8 h-8 text-primary-foreground" />
               </div>
-              <h1 className="text-4xl font-bold text-foreground">MindWhisper</h1>
+              <h1 className="text-3xl sm:text-4xl font-bold text-foreground">MindWhisper</h1>
             </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Your AI mental health companion. Speak freely in a safe, supportive space designed for natural conversation and gentle psychological insights.
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 justify-center sm:justify-end">
             <Link to="/community">
               <Button>Community</Button>
             </Link>
@@ -314,7 +314,7 @@ const HomePage = () => {
 
           <div className="lg:col-span-1">
             {isLoadingData ? (
-              <Card className="flex flex-col h-[600px] bg-gradient-calm border-0 shadow-medium p-6 space-y-6">
+              <Card className="flex flex-col h-[60vh] md:h-[500px] lg:h-[600px] bg-gradient-calm border-0 shadow-medium p-6 space-y-6">
                 <Skeleton className="h-6 w-32" />
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-full" />
@@ -323,7 +323,7 @@ const HomePage = () => {
                 <Skeleton className="h-4 w-2/3" />
               </Card>
             ) : (
-              <ConversationPanel messages={messages} isTyping={isTyping} className="h-[600px]" />
+              <ConversationPanel messages={messages} isTyping={isTyping} className="h-[60vh] md:h-[500px] lg:h-[600px]" />
             )}
           </div>
 

@@ -11,7 +11,7 @@ export default function DoctorChatPage() {
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="mx-auto max-w-3xl">
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <Link to="/">
               <Button variant="outline" size="sm">Home</Button>

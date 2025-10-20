@@ -65,7 +65,7 @@ export function VoiceInterface({
       className
     )}>
       <div className="flex flex-col items-center space-y-6">
-        <div className="relative w-32 h-32 flex items-center justify-center">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 flex items-center justify-center">
           <div className={cn(
             "absolute inset-0 rounded-full border-4 transition-all duration-300",
             `border-${getStatusColor()}`,
