@@ -25,6 +25,7 @@ const App = () => (
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/journal" element={<JournalPage />} />
+            <Route path="/doctor-chat" element={<DoctorChatPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
