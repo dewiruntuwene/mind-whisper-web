@@ -83,7 +83,7 @@ export default function CommunityPage() {
                 placeholder="Share an encouragement, tip, or question..."
                 className="min-h-24"
               />
-              <div className="flex items-center justify-between mt-2 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center justify-between gap-2 mt-2 text-sm text-muted-foreground">
                 <div>{content.trim().length}/1000</div>
                 <div className="flex items-center gap-2">
                   <Button size="sm" variant={filter === "latest" ? "default" : "outline"} onClick={() => setFilter("latest")}>Latest</Button>
