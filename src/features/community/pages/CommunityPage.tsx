@@ -63,7 +63,7 @@ export default function CommunityPage() {
             <Input
               value={state.currentUser.name}
               onChange={(e) => setName(e.target.value)}
-              className="w-40"
+              className="w-full sm:w-40"
               placeholder="Your name"
             />
           </div>
