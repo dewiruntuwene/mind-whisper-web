@@ -4,10 +4,12 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
-import Index from "./pages/Index";
-import Auth from "./pages/Auth";
-import NotFound from "./pages/NotFound";
-import Community from "./pages/Community";
+import HomePage from "./features/home/pages/HomePage";
+import AuthPage from "./features/auth/pages/AuthPage";
+import NotFoundPage from "./features/not-found/pages/NotFoundPage";
+import CommunityPage from "./features/community/pages/CommunityPage";
+import { JournalPage } from "./features/journal";
+import DoctorChatPage from "./features/doctor-chat/pages/DoctorChatPage";
 
 const queryClient = new QueryClient();
 
@@ -19,11 +21,13 @@ const App = () => (
       <AuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/community" element={<Community />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/journal" element={<JournalPage />} />
+            <Route path="/doctor-chat" element={<DoctorChatPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

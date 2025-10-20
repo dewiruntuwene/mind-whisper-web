@@ -26,7 +26,6 @@ export function VoiceInterface({
   const [volume, setVolume] = useState(0);
   const volumeRef = useRef<number>(0);
 
-  // Simulate audio level animation
   useEffect(() => {
     let animationId: number;
 
@@ -66,8 +65,7 @@ export function VoiceInterface({
       className
     )}>
       <div className="flex flex-col items-center space-y-6">
-        {/* Audio Visualization */}
-        <div className="relative w-32 h-32 flex items-center justify-center">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 flex items-center justify-center">
           <div className={cn(
             "absolute inset-0 rounded-full border-4 transition-all duration-300",
             `border-${getStatusColor()}`,
@@ -85,7 +83,6 @@ export function VoiceInterface({
             />
           </div>
 
-          {/* Microphone Icon */}
           <div className={cn(
             "relative z-10 p-4 rounded-full bg-card/80 backdrop-blur-sm shadow-soft transition-all duration-300",
             (isListening || isSpeaking) && "scale-110"
@@ -100,7 +97,6 @@ export function VoiceInterface({
           </div>
         </div>
 
-        {/* Status Text */}
         <div className="text-center">
           <p className={cn(
             "text-lg font-medium transition-colors duration-300",
@@ -113,7 +109,6 @@ export function VoiceInterface({
           </p>
         </div>
 
-        {/* Control Buttons */}
         <div className="flex items-center space-x-4">
           <Button
             variant="outline"
@@ -150,12 +145,7 @@ export function VoiceInterface({
             )}
           </Button>
 
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full border-input-border"
-            disabled
-          >
+          <Button variant="outline" size="icon" className="rounded-full border-input-border" disabled>
             <Mic className="w-4 h-4" />
           </Button>
         </div>

@@ -1,14 +1,14 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card } from "../components/ui/card";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
-import { Avatar, AvatarFallback } from "../components/ui/avatar";
-import { Badge } from "../components/ui/badge";
-import { Separator } from "../components/ui/separator";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { Heart, MessageSquare, Trash2, ArrowLeft, Send } from "lucide-react";
-import { useCommunityStore, timeAgo } from "../hooks/useCommunity";
+import { useCommunityStore, timeAgo } from "@/features/community/hooks/useCommunity";
 
 function Initials({ name }: { name: string }) {
   const parts = name.trim().split(/\s+/);
@@ -16,7 +16,7 @@ function Initials({ name }: { name: string }) {
   return <span>{initials.toUpperCase()}</span>;
 }
 
-export default function Community() {
+export default function CommunityPage() {
   const { state, setName, newPost, toggleEncourage, addComment, removePost, removeComment } = useCommunityStore();
   const [content, setContent] = useState("");
   const [filter, setFilter] = useState<"latest" | "top">("latest");
@@ -51,7 +51,7 @@ export default function Community() {
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-3xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-6">
           <div className="flex items-center gap-3">
             <Link to="/" className="inline-flex">
               <Button variant="outline" size="icon"><ArrowLeft className="w-4 h-4" /></Button>
@@ -59,11 +59,11 @@ export default function Community() {
             <h1 className="text-2xl font-bold">Community</h1>
             <Badge variant="secondary">Frontend only</Badge>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <Input
               value={state.currentUser.name}
               onChange={(e) => setName(e.target.value)}
-              className="w-40"
+              className="w-full sm:w-40"
               placeholder="Your name"
             />
           </div>
@@ -83,7 +83,7 @@ export default function Community() {
                 placeholder="Share an encouragement, tip, or question..."
                 className="min-h-24"
               />
-              <div className="flex items-center justify-between mt-2 text-sm text-muted-foreground">
+              <div className="flex flex-wrap items-center justify-between gap-2 mt-2 text-sm text-muted-foreground">
                 <div>{content.trim().length}/1000</div>
                 <div className="flex items-center gap-2">
                   <Button size="sm" variant={filter === "latest" ? "default" : "outline"} onClick={() => setFilter("latest")}>Latest</Button>
@@ -165,7 +165,7 @@ export default function Community() {
                             }
                           }}
                         />
-                        <Button onClick={() => submitComment(post.id)} disabled={!(commentDrafts[post.id] || "").trim()}>
+                        <Button onClick={() => submitComment(post.id)} disabled={!((commentDrafts[post.id] || "").trim())}>
                           Reply
                         </Button>
                       </div>

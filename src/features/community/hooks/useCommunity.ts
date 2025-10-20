@@ -11,15 +11,15 @@ export type CommunityComment = {
   postId: string;
   author: CommunityUser;
   content: string;
-  createdAt: string; // ISO
+  createdAt: string;
 };
 
 export type CommunityPost = {
   id: string;
   author: CommunityUser;
   content: string;
-  createdAt: string; // ISO
-  encouragements: string[]; // userIds who encouraged
+  createdAt: string;
+  encouragements: string[];
   comments: CommunityComment[];
 };
 
@@ -35,15 +35,7 @@ function uid(prefix = "id") {
 }
 
 function randomColor() {
-  const colors = [
-    "#4f46e5",
-    "#16a34a",
-    "#db2777",
-    "#f59e0b",
-    "#0ea5e9",
-    "#ef4444",
-    "#22c55e",
-  ];
+  const colors = ["#4f46e5", "#16a34a", "#db2777", "#f59e0b", "#0ea5e9", "#ef4444", "#22c55e"];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -96,9 +88,7 @@ export function useCommunityStore() {
         const has = p.encouragements.includes(uidv);
         return {
           ...p,
-          encouragements: has
-            ? p.encouragements.filter((id) => id !== uidv)
-            : [...p.encouragements, uidv],
+          encouragements: has ? p.encouragements.filter((id) => id !== uidv) : [...p.encouragements, uidv],
         };
       });
       return { ...s, posts };
@@ -125,25 +115,12 @@ export function useCommunityStore() {
 
   const removeComment = useCallback((postId: string, commentId: string) => {
     setState((s) => {
-      const posts = s.posts.map((p) =>
-        p.id === postId ? { ...p, comments: p.comments.filter((c) => c.id !== commentId) } : p
-      );
+      const posts = s.posts.map((p) => (p.id === postId ? { ...p, comments: p.comments.filter((c) => c.id !== commentId) } : p));
       return { ...s, posts };
     });
   }, []);
 
-  const value = useMemo(
-    () => ({
-      state,
-      setName,
-      newPost,
-      toggleEncourage,
-      addComment,
-      removePost,
-      removeComment,
-    }),
-    [state, setName, newPost, toggleEncourage, addComment, removePost, removeComment]
-  );
+  const value = useMemo(() => ({ state, setName, newPost, toggleEncourage, addComment, removePost, removeComment }), [state, setName, newPost, toggleEncourage, addComment, removePost, removeComment]);
 
   return value;
 }
