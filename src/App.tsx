@@ -9,6 +9,7 @@ import AuthPage from "./features/auth/pages/AuthPage";
 import NotFoundPage from "./features/not-found/pages/NotFoundPage";
 import CommunityPage from "./features/community/pages/CommunityPage";
 import { JournalPage } from "./features/journal";
+import DoctorChatPage from "./features/doctor-chat/pages/DoctorChatPage";
 
 const queryClient = new QueryClient();
 
