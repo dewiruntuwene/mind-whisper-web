@@ -22,15 +22,15 @@ export default function CommunityPage() {
   const [filter, setFilter] = useState<"latest" | "top">("latest");
   const [commentDrafts, setCommentDrafts] = useState<Record<string, string>>({});
 
-  const posts = useMemo(() => {
-    const base = [...state.posts];
+  const postsss = useMemo(() => {
+    const base = [...state.postsss];
     if (filter === "top") {
       base.sort((a, b) => b.encouragements.length - a.encouragements.length || b.comments.length - a.comments.length);
     } else {
       base.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     }
     return base;
-  }, [state.posts, filter]);
+  }, [state.postsss, filter]);
 
   const canPost = content.trim().length > 0 && content.trim().length <= 1000;
 
@@ -97,11 +97,11 @@ export default function CommunityPage() {
           </div>
         </Card>
 
-        {posts.length === 0 ? (
+        {postsss.length === 0 ? (
           <Card className="p-8 text-center text-muted-foreground">Be the first to start a conversation.</Card>
         ) : (
           <div className="space-y-4">
-            {posts.map((post) => (
+            {postsss.map((post) => (
               <Card key={post.id} className="p-4">
                 <div className="flex gap-3">
                   <Avatar>
